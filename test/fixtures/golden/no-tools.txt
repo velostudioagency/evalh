@@ -1,0 +1,12 @@
+<|im_start|>system
+Plain system.<|im_end|>
+<|im_start|>user
+Hi.<|im_end|>
+<|im_start|>assistant
+Working.<|im_end|>
+<|im_start|>assistant
+<think>
+All done.
+</think>
+
+Finished.<|im_end|>

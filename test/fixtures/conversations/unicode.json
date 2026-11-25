@@ -1,0 +1,19 @@
+{
+	"systemPrompt": "You are helpful. 日本語も使えます。",
+	"prompt": "Expliquez café, naïve.",
+	"tools": [],
+	"config": {
+		"harness": "pi",
+		"model": "test/model",
+		"thinkingLevel": "low",
+		"toolFamily": "pi",
+		"systemPrompt": { "mode": "pi", "realism": true },
+		"env": { "os": "linux", "shell": "bash", "user": "dev", "hostname": "devbox", "home": "/home/dev", "timezone": "UTC", "git": false },
+		"limits": { "maxTurns": 10, "timeoutSec": 60 },
+		"trace": { "formats": ["qwen3"], "includeThinking": true, "includeToolSchemas": true }
+	},
+	"messages": [
+		{ "role": "user", "content": "Expliquez café, naïve." },
+		{ "role": "assistant", "content": "Café naïve, 日本語. Οκ.", "reasoning_content": "Réfléchir: naïve.", "toolCalls": [] }
+	]
+}

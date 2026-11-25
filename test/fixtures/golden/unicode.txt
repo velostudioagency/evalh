@@ -1,0 +1,10 @@
+<|im_start|>system
+You are helpful. 日本語も使えます。<|im_end|>
+<|im_start|>user
+Expliquez café, naïve.<|im_end|>
+<|im_start|>assistant
+<think>
+Réfléchir: naïve.
+</think>
+
+Café naïve, 日本語. Οκ.<|im_end|>

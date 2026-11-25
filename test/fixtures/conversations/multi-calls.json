@@ -1,0 +1,29 @@
+{
+	"systemPrompt": "Use tools carefully.",
+	"prompt": "Check both files.",
+	"tools": [
+		{ "name": "read", "description": "Read a file from disk.", "parameters": { "type": "object", "properties": { "path": { "type": "string" } }, "required": ["path"] } },
+		{ "name": "list", "description": "List a directory.", "parameters": { "type": "object", "properties": { "dir": { "type": "string" } }, "required": ["dir"] } }
+	],
+	"config": {
+		"harness": "pi",
+		"model": "test/model",
+		"thinkingLevel": "off",
+		"toolFamily": "custom",
+		"tools": ["read", "list"],
+		"systemPrompt": { "mode": "pi", "realism": true },
+		"env": { "os": "linux", "shell": "bash", "user": "dev", "hostname": "devbox", "home": "/home/dev", "timezone": "UTC", "git": false },
+		"limits": { "maxTurns": 10, "timeoutSec": 60 },
+		"trace": { "formats": ["qwen3"], "includeThinking": true, "includeToolSchemas": true }
+	},
+	"messages": [
+		{ "role": "user", "content": "Check both files." },
+		{ "role": "assistant", "content": "", "reasoning_content": null, "toolCalls": [
+			{ "id": "c1", "name": "read", "arguments": { "path": "a.txt" } },
+			{ "id": "c2", "name": "list", "arguments": "{\"dir\":\".\"}" }
+		] },
+		{ "role": "tool", "toolCallId": "c1", "content": "alpha" },
+		{ "role": "tool", "toolCallId": "c2", "content": "a.txt\nb.txt" },
+		{ "role": "assistant", "content": "Both checked.", "reasoning_content": "Verified both.", "toolCalls": [] }
+	]
+}

@@ -1,0 +1,15 @@
+name: demo
+description: Small starter tasks for trying the harness end to end.
+
+defaults:
+  harness: pi
+  model: anthropic/claude-sonnet-4-5
+  thinkingLevel: off
+  toolFamily: pi
+  limits:
+    maxTurns: 30
+    timeoutSec: 600
+  trace:
+    formats: [qwen3]
+    includeThinking: true
+    includeToolSchemas: true

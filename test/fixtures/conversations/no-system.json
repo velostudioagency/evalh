@@ -1,0 +1,24 @@
+{
+	"systemPrompt": "",
+	"prompt": "List files.",
+	"tools": [
+		{ "name": "list", "description": "List a directory.", "parameters": { "type": "object", "properties": { "dir": { "type": "string" } }, "required": ["dir"] } }
+	],
+	"config": {
+		"harness": "pi",
+		"model": "test/model",
+		"thinkingLevel": "off",
+		"toolFamily": "custom",
+		"tools": ["list"],
+		"systemPrompt": { "mode": "pi", "realism": true },
+		"env": { "os": "linux", "shell": "bash", "user": "dev", "hostname": "devbox", "home": "/home/dev", "timezone": "UTC", "git": false },
+		"limits": { "maxTurns": 10, "timeoutSec": 60 },
+		"trace": { "formats": ["qwen3"], "includeThinking": true, "includeToolSchemas": true }
+	},
+	"messages": [
+		{ "role": "user", "content": "List files." },
+		{ "role": "assistant", "content": "Listing.", "reasoning_content": null, "toolCalls": [{ "id": "c1", "name": "list", "arguments": "{\"dir\":\".\"}" }] },
+		{ "role": "tool", "toolCallId": "c1", "content": "a.txt\nb.txt" },
+		{ "role": "assistant", "content": "Done.", "reasoning_content": null, "toolCalls": [] }
+	]
+}

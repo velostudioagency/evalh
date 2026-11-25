@@ -1,0 +1,24 @@
+{
+	"systemPrompt": "You are a coding assistant.",
+	"prompt": "Read the config file.",
+	"tools": [
+		{ "name": "read", "description": "Read a file from disk.", "parameters": { "type": "object", "properties": { "path": { "type": "string", "description": "File path" } }, "required": ["path"] } }
+	],
+	"config": {
+		"harness": "pi",
+		"model": "test/model",
+		"thinkingLevel": "off",
+		"toolFamily": "custom",
+		"tools": ["read"],
+		"systemPrompt": { "mode": "pi", "realism": true },
+		"env": { "os": "linux", "shell": "bash", "user": "dev", "hostname": "devbox", "home": "/home/dev", "timezone": "UTC", "git": false },
+		"limits": { "maxTurns": 10, "timeoutSec": 60 },
+		"trace": { "formats": ["qwen3"], "includeThinking": true, "includeToolSchemas": true }
+	},
+	"messages": [
+		{ "role": "user", "content": "Read the config file." },
+		{ "role": "assistant", "content": "Reading now.", "reasoning_content": null, "toolCalls": [{ "id": "c1", "name": "read", "arguments": "{\"path\":\"config.json\"}" }] },
+		{ "role": "tool", "toolCallId": "c1", "content": "{\"debug\": true}" },
+		{ "role": "assistant", "content": "Done.", "reasoning_content": null, "toolCalls": [] }
+	]
+}

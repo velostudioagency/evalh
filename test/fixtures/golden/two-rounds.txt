@@ -1,0 +1,43 @@
+<|im_start|>system
+Use tools.
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"description": "Read a file from disk.", "name": "read", "parameters": {"properties": {"path": {"type": "string"}}, "required": ["path"], "type": "object"}}
+{"description": "Write a file to disk.", "name": "write", "parameters": {"properties": {"content": {"type": "string"}, "path": {"type": "string"}}, "required": ["path", "content"], "type": "object"}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+Inspect and fix.<|im_end|>
+<|im_start|>assistant
+First read.
+<tool_call>
+{"name": "read", "arguments": {"path": "src/a.js"}}
+</tool_call><|im_end|>
+<|im_start|>user
+<tool_response>
+old content
+</tool_response><|im_end|>
+<|im_start|>assistant
+Now write.
+<tool_call>
+{"name": "write", "arguments": {"content": "new content", "path": "src/a.js"}}
+</tool_call><|im_end|>
+<|im_start|>user
+<tool_response>
+ok
+</tool_response><|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+Fixed.<|im_end|>

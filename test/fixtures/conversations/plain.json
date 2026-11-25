@@ -1,0 +1,19 @@
+{
+	"systemPrompt": "You are a helpful assistant.",
+	"prompt": "Say hello.",
+	"tools": [],
+	"config": {
+		"harness": "pi",
+		"model": "test/model",
+		"thinkingLevel": "off",
+		"toolFamily": "pi",
+		"systemPrompt": { "mode": "pi", "realism": true },
+		"env": { "os": "linux", "shell": "bash", "user": "dev", "hostname": "devbox", "home": "/home/dev", "timezone": "UTC", "git": false },
+		"limits": { "maxTurns": 10, "timeoutSec": 60 },
+		"trace": { "formats": ["qwen3"], "includeThinking": true, "includeToolSchemas": true }
+	},
+	"messages": [
+		{ "role": "user", "content": "Say hello." },
+		{ "role": "assistant", "content": "Hello!", "reasoning_content": null, "toolCalls": [] }
+	]
+}

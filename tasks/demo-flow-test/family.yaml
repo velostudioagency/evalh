@@ -1,0 +1,23 @@
+name: my-family
+description: Describe what this family of tasks is for.
+
+defaults:
+  harness: pi
+  model: anthropic/claude-sonnet-4-5
+  thinkingLevel: off
+  toolFamily: pi
+  env:
+    os: linux
+    shell: bash
+    user: dev
+    hostname: devbox
+    home: /home/dev
+    timezone: UTC
+    git: true
+  limits:
+    maxTurns: 40
+    timeoutSec: 900
+  trace:
+    formats: [qwen3, jsonl]
+    includeThinking: true
+    includeToolSchemas: true

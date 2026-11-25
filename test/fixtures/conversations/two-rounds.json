@@ -1,0 +1,27 @@
+{
+	"systemPrompt": "Use tools.",
+	"prompt": "Inspect and fix.",
+	"tools": [
+		{ "name": "read", "description": "Read a file from disk.", "parameters": { "type": "object", "properties": { "path": { "type": "string" } }, "required": ["path"] } },
+		{ "name": "write", "description": "Write a file to disk.", "parameters": { "type": "object", "properties": { "path": { "type": "string" }, "content": { "type": "string" } }, "required": ["path", "content"] } }
+	],
+	"config": {
+		"harness": "pi",
+		"model": "test/model",
+		"thinkingLevel": "off",
+		"toolFamily": "custom",
+		"tools": ["read", "write"],
+		"systemPrompt": { "mode": "pi", "realism": true },
+		"env": { "os": "linux", "shell": "bash", "user": "dev", "hostname": "devbox", "home": "/home/dev", "timezone": "UTC", "git": false },
+		"limits": { "maxTurns": 10, "timeoutSec": 60 },
+		"trace": { "formats": ["qwen3"], "includeThinking": true, "includeToolSchemas": true }
+	},
+	"messages": [
+		{ "role": "user", "content": "Inspect and fix." },
+		{ "role": "assistant", "content": "First read.", "reasoning_content": null, "toolCalls": [{ "id": "c1", "name": "read", "arguments": { "path": "src/a.js" } }] },
+		{ "role": "tool", "toolCallId": "c1", "content": "old content" },
+		{ "role": "assistant", "content": "Now write.", "reasoning_content": null, "toolCalls": [{ "id": "c2", "name": "write", "arguments": { "path": "src/a.js", "content": "new content" } }] },
+		{ "role": "tool", "toolCallId": "c2", "content": "ok" },
+		{ "role": "assistant", "content": "Fixed.", "reasoning_content": null, "toolCalls": [] }
+	]
+}
